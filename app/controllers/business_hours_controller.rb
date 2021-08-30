@@ -45,6 +45,9 @@ class BusinessHoursController < ApplicationController
       unless params[:status] == "edit"
         redirect_to business_day_business_hours_path(@business_hour.business_day)
       end
+    elsif params[:status] == "edit"
+      # 現在でない時間帯の編集
+      @business_hour.update(update_params)
     elsif t.hour == @business_hour.hour + 1
       # 時間帯を跨いだ場合、次の時間のレコードを取得してアップデート
       business_hour = BusinessHour.find_by(id: params[:id].to_i + 1)
@@ -55,9 +58,6 @@ class BusinessHoursController < ApplicationController
         end
       end
       redirect_to business_day_business_hours_path(business_day_id: params[:business_day_id])
-    elsif params[:status] == "edit"
-      # 現在でない時間帯の編集
-      @business_hour.update(update_params)
     end
   end
   
