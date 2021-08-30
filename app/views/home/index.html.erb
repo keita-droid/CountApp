@@ -1,0 +1,50 @@
+<div class="top-header">
+    <h2 class="sub-title">リソース・教室埋まり状況確認表</h2>
+    <div class="count-btn">
+      <% unless @today.nil? %>
+        <% unless @today.business_hours.empty? %>
+          <%= link_to business_day_business_hours_path(@today), class: "btn" do %>
+            <%= fa_icon "hand-spock-o" %> カウントする
+          <% end %>
+        <% else %>
+          <%= link_to new_business_day_business_hour_path(@today), class: "btn" do %>
+            <%= fa_icon "hand-spock-o" %> カウントする
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+</div>
+
+<div class="top-content">
+    <% unless @monthly_data.nil? || @monthly_data.empty? %>
+      <%= render partial: "table" %>
+     <% else %>
+      <p>今月のデータがありません</p>
+      <% if @month.nil? %>
+        <div class="select-area">
+          <%= link_to '作成する', new_month_path, class: "select-btn" %>
+        </div>
+      <% else %>
+        <div class="select-area">
+          <%= link_to '作成する', month_path(@month), class: "select-btn" %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+
+<div class="bottom-content">
+  <h2 class="sub-title">これまでの記録</h2>
+  <div class="monthly">
+    <% unless @months.nil? %> 
+        <ul class="monthly-records">
+        <% @months.each do |m| %>
+          <li class="list">
+            <%= link_to month_path(m), class: "btn" do %>
+              <%= fa_icon "calendar-check-o" %><span>  </span><%= m.month.strftime("%Y年%m月") %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+    <% end %>
+  </div>
+</div>

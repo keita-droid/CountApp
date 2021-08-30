@@ -1,0 +1,23 @@
+<div class="top-content">
+  <h2>
+    <%= @school.name %>教室   
+    <%= link_to edit_school_path do %>
+      <%= fa_icon "cog" %>
+    <% end %>
+  </h2>
+  <hr></hr>
+  <p>座席数：<%= @school.seats %></p>
+  <p>メール：<%= @school.email %></p>
+  <p>営業時間：平日16:00 ~ 22:00　／　土日祝13:00 ~ 19:00</p>
+  <p>基本情報：</p>
+  <p><br></p>
+</div>
+
+<div class="bottom-content">
+    <div class="link-btns">
+        <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "home 3x" %><br>
+            <span class="btn-text">ホーム</span>
+        <% end %>
+    </div>
+</div>

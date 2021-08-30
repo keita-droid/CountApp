@@ -1,0 +1,19 @@
+<div class="top-content">
+    <h2>【営業時間】</h2>
+    <ul>
+    <li>平　日：16:00 ~ 22:00</li>
+    <li>土日祝：13:00 ~ 19:00</li>
+    </ul>
+    <p>営業時間外です。営業時間になりましたら画面をリロードしてください。</p>
+    <p>現在時刻：<%= @t.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p>
+</div>
+
+<div class="count-area">
+    <div class="count-form">
+        <input type="submit" name="commit" value="こんにちは" class="count-form-btn come disabled" disabled="disabled" data-disable-with="こんにちは">
+    </div>
+    
+    <div class="count-form">
+        <input type="submit" name="commit" value="お疲れさまでした" class="count-form-btn leave disabled" disabled="disabled" data-disable-with="お疲れさまでした">
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="top-content biz_day">
+    <h2>【<%= @business_day.date_format %><%= @business_day.weekday_format %>】</h2>
+    <% unless @business_day.weekend_operation %>
+        <div class="wday-btn">
+            <span>平日</span>
+        </div>
+    <% else %>
+        <div class="wday-btn">
+            <span>土日祝</span>
+        </div>
+        
+    <% end %>
+</div>
+<div class="bottom-content">
+    <% unless @business_day.business_hours.empty? %>
+        <table>
+            <tr>
+                <th>時間帯</th>
+                <th>学習中の受講生</th>
+                <th>最大人数</th>
+                <th>来校者</th>
+                <th>帰宅者</th>
+            </tr>
+        <% @business_day.business_hours.each do |hour| %>
+            <tr>
+                <td><%= hour.hour %>時台</td>
+                <td><%= hour.current_stay %></td>
+                <td><%= hour.maximum_stay %></td>
+                <td><%= hour.coming %></td>
+                <td><%= hour.leaving %></td>
+                <td width="30px">
+                <%= link_to edit_business_day_business_hour_path(@business_day, hour), class: "edit-link-icon" do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <% end %>
+            </td>
+            </tr>
+        <% end %>
+        </table>
+    <% else %>
+        <p>＊記録がありません＊</p>
+        <div class="select-area">
+            <%= link_to '作成する', new_business_day_business_hour_path(@business_day), class: "select-btn" %>
+        </div>
+    <% end %>
+    <div class="link-btns">
+        <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "home 3x" %><br>
+            <span class="btn-text">ホーム</span>
+        <% end %>
+        <%= link_to month_path(@business_day.month), class: "back-btn" do %>
+            <%= fa_icon "chevron-circle-left 3x" %><br>
+            <span class="btn-text">月間記録</span>
+        <% end %>
+    </div>
+</div>
+

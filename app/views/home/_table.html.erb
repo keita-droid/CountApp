@@ -1,0 +1,37 @@
+<table>
+    <tr>
+        <th>埋まり率<br>（最大比）</th>
+        <th>日付</th>
+        <th>13時台</th>
+        <th>14時台</th>
+        <th>15時台</th>
+        <th>16時台</th>
+        <th>17時台</th>
+        <th>18時台</th>
+        <th>19時台</th>
+        <th>20時台</th>
+        <th>21時台</th>
+    </tr>
+    <%#  %>
+    <% @monthly_data.each do |day| %>
+        <tr>
+            <td>
+                <%= day.use_rate %>%
+            </td>
+            <td width="150px">
+                <%= link_to business_day_path(day), class: "edit-link-btn" do %>
+                    <%= day.date_format %><%= day.weekday_format %>
+                <% end %>
+            </td>
+            <td><%= day.max_of_13 %></td>
+            <td><%= day.max_of_14 %></td>
+            <td><%= day.max_of_15 %></td>
+            <td><%= day.max_of_16 %></td>
+            <td><%= day.max_of_17 %></td>
+            <td><%= day.max_of_18 %></td>
+            <td><%= day.max_of_19 %></td>
+            <td><%= day.max_of_20 %></td>
+            <td><%= day.max_of_21 %></td>
+        </tr>
+    <% end %>
+</table>

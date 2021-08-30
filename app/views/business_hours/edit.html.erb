@@ -1,0 +1,33 @@
+<div class="top-content">
+  <h2>【<%= @business_day.date_format %>】 <%= @business_hour.hour%>時台の記録</h2>
+</div>
+<div class="count-area">
+  <div class="count-form">
+      <%= form_for [@business_day, @business_hour] do |f| %>
+          <h3>■ 記録を修正する</h3>
+          <%= hidden_field_tag :status, "edit" %>
+          <div class="edit-form">
+            <%= f.label :current_stay, :学習中の受講生：, class: "edit-form-ele" %>
+            <%= f.number_field :current_stay, min: 0, value: @business_hour.current_stay, class: "edit-form-ele" %>
+          </div>
+          <div class="edit-form">
+            <%= f.label :maximum_stay, :最大人数：, class: "edit-form-ele" %>
+            <%= f.number_field :maximum_stay, min: 0, value: @business_hour.maximum_stay, class: "edit-form-ele" %>
+          </div>
+          <div class="edit-form">
+            <%= f.label :coming, :来校者：, class: "edit-form-ele" %>
+            <%= f.number_field :coming, min: 0, value: @business_hour.coming, class: "edit-form-ele" %>
+          </div>
+          <div class="edit-form">
+            <%= f.label :leaving, :帰宅者：, class: "edit-form-ele" %>
+            <%= f.number_field :leaving, min: 0, value: @business_hour.leaving, class: "edit-form-ele" %>
+          </div>
+          <div class="edit-form">
+            <%= f.label :leave_count, :帰宅カウント：, class: "edit-form-ele" %>
+            <%= f.number_field :leave_count, min: 0, value: @business_hour.leave_count, class: "edit-form-ele" %>
+          </div>
+          <%= f.hidden_field :hour, value: @business_hour.hour %>
+          <%= f.submit "更新する", class: "select-btn edit" %>
+      <% end %>
+  </div>
+</div>

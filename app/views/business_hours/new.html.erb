@@ -1,0 +1,22 @@
+<div class="top-content">
+  <h2><%= @today.date_format %><%= @today.weekday_format %>のカウントをはじめます</h2>
+  <div class="info">
+    <p>＜営業時間＞</p>
+    <ul>
+      <li>平　日：16:00 ~ 22:00</li>
+      <li>土日祝：13:00 ~ 19:00</li>
+    </ul>
+  </div>
+</div>
+<div class="bottom-content">
+  <div class="select-area">
+    <%= form_tag(business_day_business_hours_path, method: :post) do %>
+      <%= hidden_field_tag(:weekend_operation, @today.weekend_operation) %>
+      <%= submit_tag("通常営業を開始", class: "select-btn") %>
+    <% end %>
+    <%= form_tag(business_day_business_hours_path, method: :post) do %>
+      <%= hidden_field_tag(:weekend_operation, true) %>
+      <%= submit_tag("祝日の場合はこちら！", class: "select-btn") %>
+    <% end %>
+  </div>
+</div>

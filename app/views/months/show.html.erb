@@ -1,0 +1,23 @@
+<div class="top-content">
+  <h2><%= @month.month.strftime("%Y年%m月") %>の記録</h2>
+  <% if @monthly_data.empty? %>
+    <p>テーブルがありません</p>
+    <div class="select-area">
+      <%= form_for(@business_day) do |f| %>
+        <%= f.hidden_field :date, value: @month.month %>
+        <%= f.hidden_field :month_id, value: @month.id %>
+        <%= f.submit "作成する", class: "select-btn" %>
+      <% end %>
+    </div>
+  <% else %>
+    <%= render partial: "home/table" %>
+  <% end %>
+</div>
+<div class="bottom-content">
+  <div class="link-btns">
+        <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "chevron-circle-left 3x" %><br>
+            <span class="btn-text">戻る</span>
+        <% end %>
+    </div>
+</div>

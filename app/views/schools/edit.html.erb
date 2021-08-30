@@ -1,0 +1,17 @@
+<div class="top-content">
+  <h2><%= @school.name %>教室の設定</h2>
+  <hr></hr>
+  <%= form_for(@school) do |f| %>
+    <div class="select-area">
+      <%= f.label :name, value: "教室名：" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="select-area">
+      <%= f.label :seats, value: "座席数：" %>
+      <%= f.number_field :seats, min: 0 %>
+    </div>
+    <div class="select-area">
+      <%= f.submit value: "更新", class: "select-btn" %>
+    </div>
+  <% end %>
+</div>

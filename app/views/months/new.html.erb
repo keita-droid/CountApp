@@ -1,0 +1,9 @@
+<div class="top-content">
+  <h2>月間データの作成</h2>
+  <%= form_for(@month) do |f| %>
+    <div class="select-area">
+      <%= f.date_select :month, discard_day: true %>
+      <%= f.submit "作成", class: "select-btn" %>
+    </div>
+  <% end %>
+</div>

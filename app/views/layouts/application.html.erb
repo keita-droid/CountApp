@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CountApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="main-title"><%= link_to "CountApp", root_path %></h1>
+      <% if school_signed_in? %>
+        <div class="nav">
+          <ul class="gnav">
+            <li>
+              <%= fa_icon "chevron-circle-down" %>
+              <%= current_school.name %>教室(<%= current_school.seats %>席)
+              <ul>
+                <li><%= link_to "詳細", school_path(current_school) %></li>
+                <li><%= link_to "設定", edit_school_path(current_school) %></li>
+                <li><%= link_to "ログアウト", destroy_school_session_path, method: :delete %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </header>
+    <div class="contents">
+      <%= yield %>
+    </div>
+    <footer class="footer">
+      <div class="copyright">
+        <small>Copyright © 2021 CountApp All Rights Reserved.</small>
+      </div>
+    </footer>
+  </body>
+</html>

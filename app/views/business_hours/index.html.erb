@@ -1,0 +1,69 @@
+<% if @current_hour.nil? %>
+  <%= render partial: 'out_of_service' %>
+<% else %>
+  <div class="top-content">
+      <h2>【<%= @current_hour.hour %>時台の記録】</h2>
+      <ul>
+      <li>現在学習中の受講生：<%= @current_hour.current_stay %>人</li>
+      <li>最大人数：<%= @current_hour.maximum_stay %>人</li>
+      <li>この時間の来校者：<%= @current_hour.coming %>人</li>
+      <li>この時間の帰宅者：<%= @current_hour.leaving %>人（<%= @current_hour.leave_count %>）</li>
+      </ul>
+      <p>最終更新：<%= @current_hour.updated_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %></p>
+  </div>
+  
+  <div class="count-area">
+      <div class="count-form">
+          <%= form_for [@today, @current_hour] do |f| %>
+              <%= hidden_field_tag :status, "come" %>
+              <%= render partial: 'form', locals: {f: f,hour: @current_hour} %>
+              <%= f.submit "こんにちは", class: "count-form-btn" %>
+          <% end %>
+      </div>
+      
+      <div class="count-form">
+          <%= form_for [@today, @current_hour] do |f| %>
+              <%= hidden_field_tag :status, "leave" %>
+              <%= render partial: 'form', locals: {f: f,hour: @current_hour} %>
+              <% if @current_hour.current_stay == 0 %>
+                  <%= f.submit "お疲れさまでした", class: "count-form-btn leave disabled", disabled: true %>
+              <% else %>
+                  <%= f.submit "お疲れさまでした", class: "count-form-btn leave" %>
+              <% end %>
+          <% end %>
+      </div>
+  </div>
+<% end %>
+
+<div class="bottom-content">
+<h2>【本日の記録】</h2>
+    <table>
+        <tr>
+            <th>時間帯</th>
+            <th>学習中の受講生</th>
+            <th>最大人数</th>
+            <th>来校者</th>
+            <th>帰宅者</th>
+        </tr>
+    <% @today.business_hours.each do |hour| %>
+        <tr>
+            <td><%= hour.hour %>時台</td>
+            <td><%= hour.current_stay %></td>
+            <td><%= hour.maximum_stay %></td>
+            <td><%= hour.coming %></td>
+            <td><%= hour.leaving %></td>
+            <td width="30px">
+                <%= link_to edit_business_day_business_hour_path(@today, hour), class: "edit-link-icon" do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+    </table>
+    <div class="link-btns">
+        <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "chevron-circle-left 3x" %><br>
+            <span class="btn-text">戻る</span>
+        <% end %>
+    </div>
+</div>
