@@ -463,8 +463,15 @@ header {
       text-decoration: none;
       color: #383838;
       &:hover {
-        box-shadow: 3px 3px 1px rgba(0,0,0,0.5);
-        transition: .3s;
+        box-shadow: 4px 4px 1px rgba(0,0,0,0.5);
+        transition: .5s;
+      &:active {
+        position: relative;
+        top: 4px;
+        left: 4px;
+        box-shadow: none;
+        transition: none;
+      }
       }
     }
   }
@@ -495,7 +502,6 @@ td {
 table tr:nth-child(odd) td {
 	background: #fff;
 }
-
 
 // トップコンテンツ
 .top-content {
@@ -585,9 +591,19 @@ table tr:nth-child(odd) td {
   
   background-color: lightblue;
   &:hover {
+    position: relative;
+    top: -4px;
+    left: -2px;
     box-shadow: 4px 4px 8px rgba(0,0,0,0.8);
     cursor: pointer;
-    transition: .3s;
+    // transition: .3s;
+  }
+  &:active {
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+    transition: none;
   }
 }
 
