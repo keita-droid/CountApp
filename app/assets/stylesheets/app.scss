@@ -586,9 +586,8 @@ table tr:nth-child(odd) td {
   width: 300px;
   border-radius: 50px;
   border: none;
-  // border: 1px solid rgb(47, 79, 79);
-  font-size: 16px;
-  
+  color: #4f4f4f;
+  font-size: 18px;
   background-color: lightblue;
   &:hover {
     position: relative;
@@ -606,13 +605,15 @@ table tr:nth-child(odd) td {
     transition: none;
   }
 }
-
-.count-form-btn.come.disabled:hover {
-  box-shadow: none;
-}
-
-.count-form-btn.leave.disabled:hover {
-  box-shadow: none;
+  
+.count-form-btn.disabled {
+  color: #a8a8a8;
+  &:hover {
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: none;
+  }
 }
 
 .count-form-btn.leave {
