@@ -677,6 +677,25 @@ table tr:nth-child(odd) td {
         }
       }
     }
+    .months-link {
+      text-align: right;
+      margin: 10px 40px 15px 0;
+      .btn {
+        color: #383838;
+      }
+    }
+  }
+  .monthly.index {
+    background-color: #fff;
+    margin-bottom:30px;
+    .monthly-records {
+      .list {
+        margin: 20px -17px;
+        .btn {
+          font-size: 20px;
+        }
+      }
+    }
   }
   
   .link-btns {

@@ -16,8 +16,12 @@
 <div class="bottom-content">
   <div class="link-btns">
         <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "home 3x" %><br>
+            <span class="btn-text">ホーム</span>
+        <% end %>
+        <%= link_to months_path, class: "back-btn" do %>
             <%= fa_icon "chevron-circle-left 3x" %><br>
-            <span class="btn-text">戻る</span>
+            <span class="btn-text">記録一覧</span>
         <% end %>
     </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="bottom-content">
+  <h2 class="sub-title">これまでの記録</h2>
+  <div class="monthly index">
+    <% unless @months.nil? %> 
+        <ul class="monthly-records">
+        <% @months.each do |m| %>
+          <li class="list">
+            <%= link_to month_path(m), class: "btn" do %>
+              <%= fa_icon "calendar-check-o" %><span>  </span><%= m.month.strftime("%Y年%m月") %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+    <% end %>
+  </div>
+  <div class="link-btns">
+        <%= link_to root_path, class: "back-btn" do %>
+            <%= fa_icon "chevron-circle-left 3x" %><br>
+            <span class="btn-text">戻る</span>
+        <% end %>
+    </div>
+</div>

@@ -1,5 +1,9 @@
 class MonthsController < ApplicationController
   
+  def index
+    @months = Month.order("month ASC")
+  end
+  
   def new
     @month = Month.new
   end
