@@ -697,3 +697,45 @@ table tr:nth-child(odd) td {
     }
   }
 }
+
+.secret-content {
+  text-align: right;
+}
+#spock {
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  color: #eee;
+  &:hover {
+    color: darkgray;
+  }
+}
+
+
+.secret {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: image-url('IMG_0225.jpg');
+  background-size: cover;
+  height: 550px;
+  width: 400px;
+  border-radius: 15px;
+}
+
+.secret.reveal {
+  display: block;
+  animation: fadeinout 5s backwards ease-in;
+  -webkit-animation: fadeinout 3s backwards ease-out;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeinout {
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  50% { opacity: 1; }
+}
