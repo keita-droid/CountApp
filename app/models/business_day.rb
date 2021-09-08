@@ -3,6 +3,15 @@ class BusinessDay < ApplicationRecord
   belongs_to :school
   has_many :business_hours, dependent: :destroy
   
+  # レコード（一日）の来校者数の取得
+  def coming_sum
+    sum = 0
+    self.business_hours.each do |hour|
+      sum += hour.coming
+    end
+    sum
+  end
+  
   # レコード（一日）あたりの最大人数の取得
   def maximums 
     array = [0]

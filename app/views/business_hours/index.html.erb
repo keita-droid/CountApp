@@ -60,6 +60,10 @@
         </tr>
     <% end %>
     </table>
+    <ul class="results">
+        <li>最大人数：<%= @today.maximums %>人</li>
+        <li>本日の来校者：<%= @today.coming_sum %>人</li>
+    </ul>
     <div class="link-btns">
         <%= link_to root_path, class: "back-btn" do %>
             <%= fa_icon "chevron-circle-left 3x" %><br>

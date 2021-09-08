@@ -649,6 +649,16 @@ table tr:nth-child(odd) td {
     margin-left: 17px;
   }
   
+  .results {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    li {
+      margin-right: 15px;
+      list-style: none;
+    }
+  }
+  
   .monthly {
     padding: 10px 0;
     background-color: #f7f7f7;

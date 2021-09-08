@@ -36,6 +36,10 @@
             </tr>
         <% end %>
         </table>
+        <ul class="results">
+            <li>最大人数：<%= @business_day.maximums %>人</li>
+            <li>本日の来校者：<%= @business_day.coming_sum %>人</li>
+        </ul>
     <% else %>
         <p>＊記録がありません＊</p>
         <div class="select-area">
