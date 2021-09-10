@@ -37,9 +37,9 @@ class BusinessHoursController < ApplicationController
   end
   
   def update
-    t = Time.current
+    @t = Time.current
     @business_hour = BusinessHour.find(params[:id])
-    if t.hour == @business_hour.hour
+    if @t.hour == @business_hour.hour
       # 今の時間帯の更新（カウントまたは編集）
       @business_hour.update(update_params)
       unless params[:status] == "edit"
@@ -48,11 +48,11 @@ class BusinessHoursController < ApplicationController
     elsif params[:status] == "edit"
       # 現在でない時間帯の編集
       @business_hour.update(update_params)
-    elsif t.hour == @business_hour.hour + 1
+    elsif @t.hour == @business_hour.hour + 1
       # 時間帯を跨いだ場合、次の時間のレコードを取得してアップデート
       business_hour = BusinessHour.find_by(id: params[:id].to_i + 1)
       unless business_hour.nil?
-        if business_hour.hour == t.hour
+        if business_hour.hour == @t.hour
           business_hour.check_previous_hour
           business_hour.update(update_params)
         end

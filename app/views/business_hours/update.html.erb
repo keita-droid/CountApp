@@ -12,9 +12,11 @@
             <%= fa_icon "chevron-circle-left 3x" %><br>
             <span class="btn-text">記録</span>
         <% end %>
-        <%= link_to business_day_business_hours_path(@business_hour.business_day), class: "back-btn" do %>
-            <%= fa_icon "chevron-circle-right 3x" %><br>
-            <span class="btn-text">カウント</span>
+        <% if @business_hour.today?(@t) %>
+          <%= link_to business_day_business_hours_path(@business_hour.business_day), class: "back-btn" do %>
+              <%= fa_icon "chevron-circle-right 3x" %><br>
+              <span class="btn-text">カウント</span>
+          <% end %>
         <% end %>
     </div>
 </div>

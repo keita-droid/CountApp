@@ -4,6 +4,10 @@ class BusinessHour < ApplicationRecord
   # callback
   after_update :update_business_day
   
+  def today?(time)
+    time.beginning_of_day == self.business_day.date.beginning_of_day
+  end
+  
   # 1時間前の記録を確認して引き継ぐ
   def check_previous_hour
     previous_hour = BusinessHour.find_by(hour: self.hour - 1, business_day_id: self.business_day_id)
