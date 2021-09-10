@@ -1,4 +1,5 @@
 class BusinessDaysController < ApplicationController
+  before_action :days_exist?, only: :create
   
   def create
     day = Date.parse(create_params[:date])
@@ -31,5 +32,11 @@ class BusinessDaysController < ApplicationController
     else
       false
     end
+  end
+  
+  def days_exist?
+    # 同じ教室が同日のレコードをすでに持つ場合は新規作成されない
+    record = BusinessDay.find_by(date: create_params[:date], school_id: current_school.id)
+    redirect_to root_path unless record.nil?
   end
 end

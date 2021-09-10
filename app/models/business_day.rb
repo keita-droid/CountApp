@@ -3,6 +3,9 @@ class BusinessDay < ApplicationRecord
   belongs_to :school
   has_many :business_hours, dependent: :destroy
   
+  # validation
+  validates :date, presence: true
+  
   # レコード（一日）の来校者数の取得
   def coming_sum
     sum = 0
