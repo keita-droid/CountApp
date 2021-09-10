@@ -17,6 +17,8 @@ class BusinessDaysController < ApplicationController
   
   def show
     @business_day = BusinessDay.find(params[:id])
+    @tomorrow = @business_day.tomorrow
+    @yesterday = @business_day.yesterday
   end
   
   private

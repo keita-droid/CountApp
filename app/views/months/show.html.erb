@@ -14,7 +14,8 @@
   <% end %>
 </div>
 <div class="bottom-content">
-  <div class="link-btns">
+  <div class="link-wrapper">
+    <div class="link-btns">
         <%= link_to root_path, class: "back-btn" do %>
             <%= fa_icon "home 3x" %><br>
             <span class="btn-text">ホーム</span>
@@ -24,4 +25,19 @@
             <span class="btn-text">記録一覧</span>
         <% end %>
     </div>
+    <div class="link-btns">
+      <% unless @prev_month.nil? %>
+          <%= link_to month_path(@prev_month), class: "back-btn" do %>
+              <%= fa_icon "chevron-circle-left 3x" %><br>
+              <span class="btn-text">前月</span>
+          <% end %>
+      <% end %>
+      <% unless @next_month.nil? %>
+          <%= link_to month_path(@next_month), class: "back-btn" do %>
+              <%= fa_icon "chevron-circle-right 3x" %><br>
+              <span class="btn-text">翌月</span>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

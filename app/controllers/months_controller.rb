@@ -17,8 +17,9 @@ class MonthsController < ApplicationController
   
   def show
     @month = Month.find(params[:id])
-    all_monthly_data = @month.business_days
-    @monthly_data = all_monthly_data.where(school_id: current_school.id).includes(:school)
+    @prev_month = @month.prev_month
+    @next_month = @month.next_month
+    @monthly_data = @month.business_days.where(school_id: current_school.id).includes(:school)
     
     @business_day = BusinessDay.new
   end

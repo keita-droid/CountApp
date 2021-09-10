@@ -642,12 +642,16 @@ table tr:nth-child(odd) td {
   width: 733px;
   margin: 10px auto;
   
+  h2 {
+    margin-left: 17px;
+  }
+  
   p {
     margin-left: 50px;
   }
   
-  h2 {
-    margin-left: 17px;
+  .adjust {
+    margin: 69px 0;
   }
   
   .results {
@@ -697,6 +701,11 @@ table tr:nth-child(odd) td {
         }
       }
     }
+  }
+  
+  .link-wrapper {
+    display: flex;
+    justify-content: space-between;
   }
   
   .link-btns {

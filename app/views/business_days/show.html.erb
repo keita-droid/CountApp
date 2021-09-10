@@ -41,20 +41,38 @@
             <li>本日の来校者：<%= @business_day.coming_sum %>人</li>
         </ul>
     <% else %>
-        <p>＊記録がありません＊</p>
-        <div class="select-area">
-            <%= link_to '作成する', new_business_day_business_hour_path(@business_day), class: "select-btn" %>
+        <div class="adjust">
+            <p>＊記録がありません＊</p>
+            <div class="select-area">
+                <%= link_to '作成する', new_business_day_business_hour_path(@business_day), class: "select-btn" %>
+            </div>
         </div>
     <% end %>
-    <div class="link-btns">
-        <%= link_to root_path, class: "back-btn" do %>
-            <%= fa_icon "home 3x" %><br>
-            <span class="btn-text">ホーム</span>
-        <% end %>
-        <%= link_to month_path(@business_day.month), class: "back-btn" do %>
-            <%= fa_icon "chevron-circle-left 3x" %><br>
-            <span class="btn-text">月間記録</span>
-        <% end %>
+    <div class="link-wrapper">
+        <div class="link-btns">
+            <%= link_to root_path, class: "back-btn" do %>
+                <%= fa_icon "home 3x" %><br>
+                <span class="btn-text">ホーム</span>
+            <% end %>
+            <%= link_to month_path(@business_day.month), class: "back-btn" do %>
+                <%= fa_icon "chevron-circle-left 3x" %><br>
+                <span class="btn-text">月間記録</span>
+            <% end %>
+        </div>
+        <div class="link-btns">
+            <% unless @yesterday.nil? %>
+                <%= link_to business_day_path(@yesterday), class: "back-btn" do %>
+                    <%= fa_icon "chevron-circle-left 3x" %><br>
+                    <span class="btn-text">前日</span>
+                <% end %>
+            <% end %>
+            <% unless @tomorrow.nil? %>
+                <%= link_to business_day_path(@tomorrow), class: "back-btn" do %>
+                    <%= fa_icon "chevron-circle-right 3x" %><br>
+                    <span class="btn-text">翌日</span>
+                <% end %>
+            <% end %>
+        </div>
     </div>
 </div>
 

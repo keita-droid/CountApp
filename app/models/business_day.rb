@@ -54,4 +54,14 @@ class BusinessDay < ApplicationRecord
         " (土)"
     end
   end
+  
+  # インスタンスの翌日のレコードを取得
+  def tomorrow
+    BusinessDay.find_by(date: self.date.tomorrow)
+  end
+  
+  # インスタンスの前日のレコードを取得
+  def yesterday
+    BusinessDay.find_by(date: self.date.yesterday)
+  end
 end
