@@ -741,7 +741,7 @@ table tr:nth-child(odd) td {
 }
 
 
-.secret {
+#secret {
   display: none;
   position: fixed;
   top: 50%;
@@ -754,7 +754,7 @@ table tr:nth-child(odd) td {
   border-radius: 15px;
 }
 
-.secret.reveal {
+#secret.reveal {
   display: block;
   animation: fadeinout 5s backwards ease-in;
   -webkit-animation: fadeinout 3s backwards ease-out;
