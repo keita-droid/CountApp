@@ -1,5 +1,5 @@
 <div class="top-content">
-  <h2><%= @today.date_format %><%= @today.weekday_format %>のカウントをはじめます</h2>
+  <h2 class="sub-title"><%= @today.date_format %><%= @today.weekday_format %>のカウントをはじめます</h2>
   <div class="info">
     <p>＜営業時間＞</p>
     <ul>
@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="bottom-content">
-  <div class="select-area">
+  <div class="select-area start-btn">
     <%= form_tag(business_day_business_hours_path, method: :post) do %>
       <%= hidden_field_tag(:weekend_operation, @today.weekend_operation) %>
       <%= submit_tag("通常営業を開始", class: "select-btn") %>

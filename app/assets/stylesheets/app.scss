@@ -372,7 +372,7 @@ body {
 // ヘッダー
 header {
   height: 60px;
-  background-color: #66cdaa;
+  background-color: rgba(102, 205, 170, 0.8);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -447,6 +447,66 @@ header {
   }
 }
 
+// アニメーション
+
+.days, .info, .start-btn, .edit, .field, .actions {
+  animation: fadeUpAnime .7s forwards;
+  opacity: 0;
+}
+
+.monthly, .no-data {
+  animation: fadeUpAnime .9s forwards;
+  opacity: 0;
+}
+
+.sub-title {
+  animation: fadeSlideAnime .5s forwards;
+  opacity: 0;
+}
+
+.wday-btn {
+  animation: fadeSlideAnime .7s forwards;
+  opacity: 0;
+}
+
+.top-content.count-top ul, .today {
+  animation: fadeInAnime .3s ease-in forwards;
+  opacity: 0;
+}
+
+.daily, .adjust.no-data {
+  animation: fadeSlideAnime .9s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+    transform: translateY(70px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideAnime{
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInAnime{
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 // ホーム画面コンテンツ内ヘッダー
 .top-header {
@@ -459,20 +519,18 @@ header {
     .btn {
       background-color: rgba(102, 205, 170, 0.5);
       padding: 15px 20px;
-      border: 1px solid #66cdaa;
+      border: none;
       border-radius: 10px;
       text-decoration: none;
       color: #383838;
-      &:hover {
-        box-shadow: 4px 4px 1px rgba(0,0,0,0.5);
-        transition: .5s;
+      box-shadow: 4px 4px 1px rgba(0,0,0,0.5);
+
       &:active {
         position: relative;
         top: 4px;
         left: 4px;
         box-shadow: none;
         transition: none;
-      }
       }
     }
   }
@@ -484,6 +542,7 @@ table {
   margin: 0 auto;
   margin-bottom: 25px;
 }
+
 
 td {
   background: #eee;
@@ -744,6 +803,7 @@ table tr:nth-child(odd) td {
 #secret {
   display: none;
   position: fixed;
+  z-index: 100;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

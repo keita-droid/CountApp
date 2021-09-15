@@ -19,16 +19,18 @@
     <% unless @monthly_data.nil? || @monthly_data.empty? %>
       <%= render partial: "table" %>
      <% else %>
-      <p>今月のデータがありません</p>
-      <% if @month.nil? %>
-        <div class="select-area">
-          <%= link_to '作成する', new_month_path, class: "select-btn" %>
+        <div class="no-data">
+          <p>今月のデータがありません</p>
+          <% if @month.nil? %>
+            <div class="select-area">
+              <%= link_to '作成する', new_month_path, class: "select-btn" %>
+            </div>
+          <% else %>
+            <div class="select-area">
+              <%= link_to '作成する', month_path(@month), class: "select-btn" %>
+            </div>
+          <% end %>
         </div>
-      <% else %>
-        <div class="select-area">
-          <%= link_to '作成する', month_path(@month), class: "select-btn" %>
-        </div>
-      <% end %>
     <% end %>
 </div>
 

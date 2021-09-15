@@ -5,13 +5,13 @@
 <% if @current_hour.nil? %>
   <%= render partial: 'out_of_service' %>
 <% else %>
-  <div class="top-content">
+  <div class="top-content count-top">
       <h2>【<%= @current_hour.hour %>時台の記録】</h2>
       <ul>
-      <li>現在学習中の受講生：<%= @current_hour.current_stay %>人</li>
-      <li>最大人数：<%= @current_hour.maximum_stay %>人</li>
-      <li>この時間の来校者：<%= @current_hour.coming %>人</li>
-      <li>この時間の帰宅者：<%= @current_hour.leaving %>人（<%= @current_hour.leave_count %>）</li>
+        <li>現在学習中の受講生：<%= @current_hour.current_stay %>人</li>
+        <li>最大人数：<%= @current_hour.maximum_stay %>人</li>
+        <li>この時間の来校者：<%= @current_hour.coming %>人</li>
+        <li>この時間の帰宅者：<%= @current_hour.leaving %>人（<%= @current_hour.leave_count %>）</li>
       </ul>
       <p>最終更新：<%= @current_hour.updated_at.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %></p>
   </div>
@@ -41,7 +41,7 @@
 
 <div class="bottom-content">
 <h2>【本日の記録】</h2>
-    <table>
+    <table class="today">
         <tr>
             <th>時間帯</th>
             <th>学習中の受講生</th>
@@ -64,7 +64,7 @@
         </tr>
     <% end %>
     </table>
-    <ul class="results">
+    <ul class="results today">
         <li>最大人数：<%= @today.maximums %>人</li>
         <li>本日の来校者：<%= @today.coming_sum %>人</li>
     </ul>

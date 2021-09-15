@@ -1,7 +1,7 @@
 <div class="top-content">
   <h2>【<%= @business_day.date_format %>】 <%= @business_hour.hour%>時台の記録</h2>
 </div>
-<div class="count-area">
+<div class="count-area edit">
   <div class="count-form">
       <%= form_for [@business_day, @business_hour] do |f| %>
           <h3>■ 記録を修正する</h3>

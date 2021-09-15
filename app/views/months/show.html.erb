@@ -1,13 +1,15 @@
 <div class="top-content">
-  <h2><%= @month.month.strftime("%Y年%m月") %>の記録</h2>
+  <h2 class="sub-title"><%= @month.month.strftime("%Y年%m月") %>の記録</h2>
   <% if @monthly_data.empty? %>
-    <p>テーブルがありません</p>
-    <div class="select-area">
-      <%= form_for(@business_day) do |f| %>
-        <%= f.hidden_field :date, value: @month.month %>
-        <%= f.hidden_field :month_id, value: @month.id %>
-        <%= f.submit "作成する", class: "select-btn" %>
-      <% end %>
+    <div class="no-data">
+      <p>テーブルがありません</p>
+      <div class="select-area">
+        <%= form_for(@business_day) do |f| %>
+          <%= f.hidden_field :date, value: @month.month %>
+          <%= f.hidden_field :month_id, value: @month.id %>
+          <%= f.submit "作成する", class: "select-btn" %>
+        <% end %>
+      </div>
     </div>
   <% else %>
     <%= render partial: "home/table" %>
