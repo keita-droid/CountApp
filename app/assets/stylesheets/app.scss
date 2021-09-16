@@ -366,7 +366,8 @@ body {
   font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
   font-weight: 500;
   color: #383838;
-  background-color: #fefdfc;
+  // background-color: #fefdfc;
+  background-color: #f6f6f4;
 }
 
 // ヘッダー
@@ -438,7 +439,7 @@ header {
 // フッター
 .footer {
   height: 180px;
-  background-color: rgb(247, 247, 247);
+  background-color: #eee;
   .copyright {
     text-align: center;
     small {
@@ -448,7 +449,6 @@ header {
 }
 
 // アニメーション
-
 .days, .edit, .field, .actions {
   animation: fadeUpAnime .7s forwards;
   opacity: 0;
@@ -469,8 +469,13 @@ header {
   opacity: 0;
 }
 
-.top-content.count-top ul, .today {
+.top-content.count-top ul, .today, .count-btn{
   animation: fadeInAnime .3s ease-in forwards;
+  opacity: 0;
+}
+
+.count-btn{
+  animation: fadeInAnime .5s ease-in .5s forwards;
   opacity: 0;
 }
 
@@ -515,7 +520,7 @@ header {
   align-items: center;
   
   .count-btn {
-    width: 160.22px;
+    width: 162px;
     .btn {
       background-color: rgba(102, 205, 170, 0.5);
       padding: 15px 20px;
@@ -560,7 +565,7 @@ td {
 }
 
 table tr:nth-child(odd) td {
-	background: #fefdfc;
+	background: #f6f6f4;
 }
 
 // トップコンテンツ
@@ -725,7 +730,7 @@ table tr:nth-child(odd) td {
   
   .monthly {
     padding: 10px 0;
-    background-color: #f7f7f7;
+    background-color: #eee;
     border-radius: 20px;
     .monthly-records {
       list-style: none;
@@ -801,7 +806,8 @@ table tr:nth-child(odd) td {
 
 
 #secret {
-  display: none;
+  // display: none;
+  visibility: hidden;
   position: fixed;
   z-index: 100;
   top: 50%;
@@ -815,10 +821,14 @@ table tr:nth-child(odd) td {
 }
 
 #secret.reveal {
-  display: block;
+  // display: block;
+  visibility: visible;
   animation: fadeinout 5s backwards ease-in;
   -webkit-animation: fadeinout 3s backwards ease-out;
   opacity: 0;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  overflow:hidden;
 }
 
 @-webkit-keyframes fadeinout {
