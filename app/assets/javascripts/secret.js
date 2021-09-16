@@ -1,13 +1,9 @@
-function secret(){
-  var spock = document.getElementById("spock");
-  
-  spock.addEventListener('click', function(){
-    var div = document.getElementById('secret');
-    div.classList.add('reveal');
-    div.addEventListener('webkitAnimationEnd', function(){
-      div.classList.remove('reveal');
+$(window).on('turbolinks:load', function(){
+  $("#spock").on('click', function(){
+    var $div = $("#secret");
+    $div.addClass("reveal");
+    $div.on('webkitAnimationEnd', function(){
+      $div.removeClass("reveal");
     });
   });
-}
-
-window.addEventListener('turbolinks:load', secret);
+});
