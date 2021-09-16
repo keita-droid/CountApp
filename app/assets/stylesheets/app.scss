@@ -372,7 +372,7 @@ body {
 // ヘッダー
 header {
   height: 60px;
-  background-color: rgba(102, 205, 170, 0.8);
+  background-color: rgba(102, 205, 170, 0.9);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -449,12 +449,12 @@ header {
 
 // アニメーション
 
-.days, .info, .start-btn, .edit, .field, .actions {
+.days, .edit, .field, .actions {
   animation: fadeUpAnime .7s forwards;
   opacity: 0;
 }
 
-.monthly, .no-data {
+.monthly {
   animation: fadeUpAnime .9s forwards;
   opacity: 0;
 }
@@ -474,7 +474,7 @@ header {
   opacity: 0;
 }
 
-.daily, .adjust.no-data {
+.daily, .no-data, .info, .start-btn {
   animation: fadeSlideAnime .9s forwards;
   opacity: 0;
 }
