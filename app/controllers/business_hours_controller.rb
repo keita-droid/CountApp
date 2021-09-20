@@ -39,25 +39,26 @@ class BusinessHoursController < ApplicationController
   def update
     @t = Time.current
     @business_hour = BusinessHour.find(params[:id])
-    if @t.hour == @business_hour.hour
-      # 今の時間帯の更新（カウントまたは編集）
+    
+    # 通常の編集
+    if params[:status] == "edit"
       @business_hour.update(update_params)
-      unless params[:status] == "edit"
-        redirect_to business_day_business_hours_path(@business_hour.business_day)
-      end
-    elsif params[:status] == "edit"
-      # 現在でない時間帯の編集
-      @business_hour.update(update_params)
+
+    # カウント（現在の時間帯の更新）
+    elsif @t.hour == @business_hour.hour
+      business_hour = count(@business_hour)
+      business_hour.save
+      redirect_to business_day_business_hours_path(@business_hour.business_day)
+    
+    # 時間帯を跨いだ場合、次の時間の記録を取得してカウント
     elsif @t.hour == @business_hour.hour + 1
-      # 時間帯を跨いだ場合、次の時間のレコードを取得してアップデート
-      business_hour = BusinessHour.find_by(id: params[:id].to_i + 1)
+      business_hour = @business_hour.next_hour
       unless business_hour.nil?
-        if business_hour.hour == @t.hour
-          business_hour.check_previous_hour
-          business_hour.update(update_params)
-        end
+        business_hour.check_previous_hour
+        business_hour = count(business_hour)
+        business_hour.save
       end
-      redirect_to business_day_business_hours_path(business_day_id: params[:business_day_id])
+      redirect_to business_day_business_hours_path(@business_hour.business_day)
     end
   end
   
@@ -78,41 +79,15 @@ class BusinessHoursController < ApplicationController
   end
   
   def update_params
-    set = params.require(:business_hour).permit(:current_stay, :maximum_stay, :coming, :leaving, :leave_count)
-    
+    params.require(:business_hour).permit(:current_stay, :maximum_stay, :coming, :leaving, :leave_count)
+  end
+  
+  def count(business_hour)
     case params[:status]
     when "come"
-      come_one(set)
+      business_hour.come_one
     when "leave"
-      leave_one(set)
-    when "edit" 
-      set
+      business_hour.leave_one
     end
   end
-  
-  def come_one(set)
-    unless set[:leave_count].to_i > 0
-      set[:current_stay] = "#{set[:current_stay].to_i + 1}"
-      set[:maximum_stay] = "#{set[:maximum_stay].to_i + 1}"
-      set[:coming] = "#{set[:coming].to_i + 1}"
-      return set
-    else
-      set[:current_stay] = "#{set[:current_stay].to_i + 1}"
-      set[:leave_count] = "#{set[:leave_count].to_i - 1}"
-      set[:coming] = "#{set[:coming].to_i + 1}"
-      return set
-    end
-  end
-  
-  def leave_one(set)
-    unless set[:current_stay].to_i == 0
-      set[:current_stay] = "#{set[:current_stay].to_i - 1}"
-      set[:leaving] = "#{set[:leaving].to_i + 1}"
-      set[:leave_count] = "#{set[:leave_count].to_i + 1}"
-      return set
-    else
-      return set
-    end
-  end
-  
 end

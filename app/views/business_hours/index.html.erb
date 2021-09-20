@@ -20,7 +20,6 @@
       <div class="count-form">
           <%= form_for [@today, @current_hour] do |f| %>
               <%= hidden_field_tag :status, "come" %>
-              <%= render partial: 'form', locals: {f: f,hour: @current_hour} %>
               <%= f.submit "こんにちは", class: "count-form-btn" %>
           <% end %>
       </div>
@@ -28,7 +27,6 @@
       <div class="count-form">
           <%= form_for [@today, @current_hour] do |f| %>
               <%= hidden_field_tag :status, "leave" %>
-              <%= render partial: 'form', locals: {f: f,hour: @current_hour} %>
               <% if @current_hour.current_stay == 0 %>
                   <%= f.submit "お疲れさまでした", class: "count-form-btn leave disabled", disabled: true %>
               <% else %>
